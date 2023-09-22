@@ -1,10 +1,11 @@
 import React from "react";
+import { Navbar } from "../component/navbar";
 import rigoImage from "../../img/rigo-baby.jpg";
-import "../../styles/home.css";
+import "../../styles/listContac.css";
 
-export const Home = () => (
+export const ListContac = () => (
 	<div className="text-center mt-5">
-		<h1>Hello Rigo!</h1>
+		<Navbar/>
 		<p>
 			<img src={rigoImage} />
 		</p>
