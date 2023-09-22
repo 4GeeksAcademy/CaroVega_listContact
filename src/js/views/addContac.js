@@ -10,7 +10,9 @@ export const AddContac = () => {
 
 	return (
 		<div className="container">
-			<h1>Add a new contact</h1>
+			
+			<h1  class="text-center m-2">Add a new contact</h1>
+			
 			<div className="my-3">
 				<label for="name" class="form-label">Full name</label>
     			<input type="text" class="form-control" id="name" aria-describedby="nameContact"></input>
@@ -25,7 +27,7 @@ export const AddContac = () => {
     			<input type="text" class="form-control" id="adres" aria-describedby="nameContact"></input>
 			</div>
 
-			<div>
+			<div className="d-grid gap-2 col-12 mx-auto my-2">
 				<button type="button" class="btn btn-primary">Save</button>
 			</div>
 			<Link to="/">
