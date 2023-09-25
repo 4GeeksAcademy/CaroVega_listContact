@@ -67,10 +67,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 			editorcontac:(id,data)=>{
 				console.log("estamos editando", data);
 				console.log(id);
-				
+				const{agenda}=getStore();
 				data["agenda_slug"]= agenda;
-				const {contacts} = getStore();
-			},
+				const{updateserver}=getActions();
+				updateserver(data, id);
+				
+
+			},updateserver:async(data, id) => {
+				try{
+					const resp = await fetch(fakeApiListContact+id, {
+						method:"PUT",
+						body: JSON.stringify(data),
+						headers:{"Content-Type": "application/json",},
+					});
+					if (resp.ok) {
+						console.log ("realizado");
+						const {getDataContac}=getActions();
+						getDataContac();
+						
+					} else {
+						console.error("Error al obtener datos de la API. Respuesta completa:", await resp.text());
+					}
+					
+				}catch (error){
+					console.error({error})
+					return
+				}},
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
