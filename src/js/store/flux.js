@@ -64,6 +64,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				
 
 			},
+			editorcontac:(id,data)=>{
+				console.log("estamos editando", data);
+				console.log(id);
+				
+				data["agenda_slug"]= agenda;
+				const {contacts} = getStore();
+			},
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();

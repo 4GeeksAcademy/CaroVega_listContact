@@ -1,19 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { FaLocationDot, FaPhoneFlip, FaEnvelope, FaTrashCan,FaPencil } from "react-icons/fa6";
 import joanImage from "../../img/joankiller.jpg";
 
 
 export const ContacTarjet = (props) => {
-	function handleclickEditor(index){
-		console.log("hiciste click al contacto", index);
-	};
+	
 	function handleclickdelete(index){
 		console.log("hiciste click para eliminar el contacto", index);
 	};
 
 
 	return(
-							<div class="card">
+							<div className="card">
 								<div className="card-body contacData d-flex justify-content-start">
 									<div>
 										<img className ="contactPhoto" src={joanImage}/>
@@ -24,7 +23,9 @@ export const ContacTarjet = (props) => {
 												<p className ="namecontac">{props.namecontact}</p>
 											</div>
 											<div>
-												<button className="editor"onClick={()=> handleclickEditor(props.indexcontac)}><FaPencil/></button>
+												<Link to={`/addContac?edit=${props.id}`}>
+													<button className="editor"><FaPencil/></button>
+												</Link>
 												<button className="delete" onClick={()=> handleclickdelete(props.indexcontac)}><FaTrashCan/></button>
 											</div>
 										</div>
@@ -35,4 +36,4 @@ export const ContacTarjet = (props) => {
 								</div>
 							</div>
 );
-	}
+	}	
