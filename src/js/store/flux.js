@@ -3,7 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			contacts:[],
-			agenda:"agenda/agendanueva"
+			agenda:"holito"
 		},
 		actions: {
 			
@@ -12,7 +12,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const {agenda} =getStore();
 				
 				try{
-					const resp = await fetch(fakeApiListContact+agenda, {
+					const resp = await fetch(fakeApiListContact+ "agenda/"+agenda, {
 						method:"GET",
 						headers:{"Content-Type": "application/json",},
 					});
@@ -35,14 +35,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 			addContac: (data)=>{
 				console.log("desde store recibi datos", data)
 				const {contacts} = getStore();
+				const {agenda}=getStore();
+				data["agenda_slug"]= agenda;
+				console.log(data);
 				setStore({ contacts: [...contacts,data] });
-				//setStore({contacts: [data]})
+				const {uploadcontac}=getActions();
+				uploadcontac(data);
 				
 			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
+			uploadcontac: async(data) => {
+				try{
+					const resp = await fetch(fakeApiListContact, {
+						method:"POST",
+						body: JSON.stringify(data),
+						headers:{"Content-Type": "application/json",},
+					});
+					if (resp.ok) {
+						console.log ("realizado");
+						
+					} else {
+						console.error("Error al obtener datos de la API. Respuesta completa:", await resp.text());
+					}
+					
+				}catch (error){
+					console.error({error})
+					return
+				}
+				
+
 			},
 			changeColor: (index, color) => {
 				//get the store
