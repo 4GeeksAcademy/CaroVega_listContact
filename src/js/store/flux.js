@@ -1,13 +1,43 @@
+const fakeApiListContact = "https://playground.4geeks.com/apis/fake/contact/"
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			contacts:[],
-			
+			agenda:"agenda/agendanueva"
 		},
 		actions: {
+			
 			// Use getActions to call a function within a fuction
-			saveDataContac: () => {
-				console.log("datos");
+			getDataContac: async() => {
+				const {agenda} =getStore();
+				
+				try{
+					const resp = await fetch(fakeApiListContact+agenda, {
+						method:"GET",
+						headers:{"Content-Type": "application/json",},
+					});
+					if (resp.ok) {
+						const contacts = await resp.json();
+						setStore({contacts});
+						console.log (contacts);
+						
+					} else {
+						console.error("Error al obtener datos de la API. Respuesta completa:", await resp.text());
+					}
+					
+				}catch (error){
+					console.error({error})
+					return
+				}
+				
+			},
+
+			addContac: (data)=>{
+				console.log("desde store recibi datos", data)
+				const {contacts} = getStore();
+				setStore({ contacts: [...contacts,data] });
+				//setStore({contacts: [data]})
+				
 			},
 			loadSomeData: () => {
 				/**

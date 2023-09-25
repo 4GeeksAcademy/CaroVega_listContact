@@ -1,0 +1,7 @@
+.contactPhoto{
+    border-radius: 50%;
+    border: 1px solid gray;
+}
+.editor, .delete {
+    border:0px;
+}
