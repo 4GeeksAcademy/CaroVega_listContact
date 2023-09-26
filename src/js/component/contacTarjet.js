@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
+import {Modal} from "../component/modal"
 import { FaLocationDot, FaPhoneFlip, FaEnvelope, FaTrashCan,FaPencil } from "react-icons/fa6";
 import joanImage from "../../img/joankiller.jpg";
 
 
 export const ContacTarjet = (props) => {
+	const { actions } = useContext(Context);
 	
-	function handleclickdelete(index){
-		console.log("hiciste click para eliminar el contacto", index);
-	};
 
+	
 
 	return(
 							<div className="card">
@@ -26,7 +27,8 @@ export const ContacTarjet = (props) => {
 												<Link to={`/addContac?edit=${props.id}`}>
 													<button className="editor"><FaPencil/></button>
 												</Link>
-												<button className="delete" onClick={()=> handleclickdelete(props.indexcontac)}><FaTrashCan/></button>
+												<button className="delete" onClick={()=> actions.openModal()}><FaTrashCan/></button>
+												<Modal idcontac={props.id} />
 											</div>
 										</div>
 										<p className ="address"><FaLocationDot/>{props.address}</p>

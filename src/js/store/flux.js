@@ -3,7 +3,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			contacts:[],
-			agenda:"holito"
+			agenda:"holito",
+			open:"none"
 		},
 		actions: {
 			
@@ -14,7 +15,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try{
 					const resp = await fetch(fakeApiListContact+ "agenda/"+agenda, {
 						method:"GET",
-						headers:{"Content-Type": "application/json",},
+						headers:{"Content-Type": "application/json"}
 					});
 					if (resp.ok) {
 						const contacts = await resp.json();
@@ -93,6 +94,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error({error})
 					return
 				}},
+				openModal:()=>{
+									
+					setStore({open: "flex"})
+				},
+				closeModal:()=>{
+					setStore({open:"none"});
+				},
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
