@@ -14,18 +14,20 @@ export const ListContac = () => {
 	<div className="text-center mt-5">
 		<Navbar/>
 		{/* componente  */}
-		<ul className="list-group">
-		{store.contacts.length === 0 ? (<h1>Añade contactos</h1>):
-			(store.contacts.map((item, index) => {
-				return(
-					<li key={index}
-						className="list-group-item d-flex justify-content-between">
-						<ContacTarjet namecontact ={item.full_name}  address={item.address} phone ={item.phone} email ={item.email} id={item.id} indexcontac={index} />
-					</li>
-					);	
+		<div className="contenedorContactos d-flex justify-content-center col-md-10">
+			
+			{store.contacts.length === 0 ? (<h1>Añade contactos</h1>):
+				(store.contacts.map((item, index) => {
+					return(
+						<div key={index}
+							className="col-md-12 mx-auto">
+							<ContacTarjet namecontact ={item.full_name}  address={item.address} phone ={item.phone} email ={item.email} id={item.id} indexcontac={index} />
+						</div>
+						);	
 
-				}))}
-			</ul>
+					}))}
+				
+		</div>
 	</div>
 );
 

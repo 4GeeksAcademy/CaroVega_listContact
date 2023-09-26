@@ -53,11 +53,11 @@ export const AddContac = () => {
 	}
 
 	return (
-		<div className="container">
+		<div className="container col-md-12 mx-auto">
 			
 			<h1  className="text-center m-2">Add a new contact</h1>
 			
-			<div className="my-3">
+			<div className="my-3 col-md-12 mx-auto">
 			<form onSubmit={submitForm}>	
 				<label htmlFor="name" className="form-label">Full name</label>
     			<input type="text" className="form-control" id="full_name" aria-describedby="nameContact" name="full_name" placeholder="Full Name"></input>

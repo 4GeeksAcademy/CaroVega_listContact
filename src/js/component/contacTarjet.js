@@ -13,27 +13,29 @@ export const ContacTarjet = (props) => {
 		
 
 	return(
-							<div className="card">
+							<div className="card contactTarjet">
 								<div className="card-body contacData d-flex justify-content-start">
-									<div>
+									<div className="p-2 col-md-3">
 										<img className ="contactPhoto" src={joanImage}/>
 									</div>
-									<div>
+									<div className="p-1 col-md-9">
 										<div className="contentName d-flex justify-content-between">
 											<div>
 												<p className ="namecontac">{props.namecontact}</p>
 											</div>
 											<div>
 												<Link to={`/addContac?edit=${props.id}`}>
-													<button className="editor"><FaPencil/></button>
+													<button className="editor p-2 mx-3"><FaPencil/></button>
 												</Link>
-												<button className="delete" onClick={()=> actions.setContactToDelete(props.id)}><FaTrashCan/></button>
+												<button className="delete p-2 mx-3" onClick={()=> actions.setContactToDelete(props.id)}><FaTrashCan/></button>
 												<Modal />
 											</div>
 										</div>
-										<p className ="address"><FaLocationDot/>{props.address}</p>
-										<p className ="phone"><FaPhoneFlip/>{props.phone}</p>
-										<p className ="email"><FaEnvelope/>{props.email}</p>
+										<div className="contentOtherData">
+											<p className ="address"><FaLocationDot/><span className="p-2">{props.address}</span></p>
+											<p className ="phone"><FaPhoneFlip/><span className="p-2">{props.phone}</span></p>
+											<p className ="email"><FaEnvelope/><span className="p-2">{props.email}</span></p>
+										</div>
 									</div>
 								</div>
 							</div>
