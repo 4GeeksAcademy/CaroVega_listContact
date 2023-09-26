@@ -18,7 +18,7 @@ export const Modal = (props) => {
                 </div>
                 <div className="modal-footer">
                     <button type="button" className="btn btn-primary" onClick={()=>actions.closeModal()}>Oh no!</button>
-                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Yes baby!</button>
+                    <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={()=>actions.eliminateContac(store.idcontac)}>Yes baby!</button>
                 </div>
                 </div>
             </div>

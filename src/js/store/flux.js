@@ -4,7 +4,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			contacts:[],
 			agenda:"holito",
-			open:"none"
+			open:"none",
+			idcontac:null
 		},
 		actions: {
 			
@@ -94,6 +95,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error({error})
 					return
 				}},
+				setContactToDelete:(id)=>{
+					setStore({idcontac:id});
+					const {openModal}= getActions();
+					openModal();
+				},
 				openModal:()=>{
 									
 					setStore({open: "flex"})
@@ -101,6 +107,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 				closeModal:()=>{
 					setStore({open:"none"});
 				},
+				eliminateContac:(idDelete)=>{
+					const {contacts}=getStore();
+					const dataDelete =contacts.find((item)=>item.id==idDelete);
+					console.log (dataDelete);
+					const {deleteContact}=getActions();
+					deleteContact(idDelete);
+					const {closeModal}=getActions();
+					closeModal();
+				},
+				deleteContact:async(id) => {
+					try{
+						const resp = await fetch(fakeApiListContact+id, {
+							method:"DELETE",
+							headers:{"Content-Type": "application/json"}
+						});
+						if (resp.ok) {
+							console.log ("realizado");
+							const {getDataContac}=getActions();
+							getDataContac();
+							
+						} else {
+							console.error("Error al obtener datos de la API. Respuesta completa:", await resp.text());
+						}
+						
+					}catch (error){
+						console.error({error})
+						return
+					}},
+
+
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();

@@ -7,10 +7,10 @@ import joanImage from "../../img/joankiller.jpg";
 
 
 export const ContacTarjet = (props) => {
-	const { actions } = useContext(Context);
+	const { store,actions } = useContext(Context);
 	
-
 	
+		
 
 	return(
 							<div className="card">
@@ -27,8 +27,8 @@ export const ContacTarjet = (props) => {
 												<Link to={`/addContac?edit=${props.id}`}>
 													<button className="editor"><FaPencil/></button>
 												</Link>
-												<button className="delete" onClick={()=> actions.openModal()}><FaTrashCan/></button>
-												<Modal idcontac={props.id} />
+												<button className="delete" onClick={()=> actions.setContactToDelete(props.id)}><FaTrashCan/></button>
+												<Modal />
 											</div>
 										</div>
 										<p className ="address"><FaLocationDot/>{props.address}</p>
