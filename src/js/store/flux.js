@@ -54,7 +54,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 					if (resp.ok) {
 						console.log ("realizado");
-						
+						const {getDataContac}=getActions();
+						getDataContac();
 					} else {
 						console.error("Error al obtener datos de la API. Respuesta completa:", await resp.text());
 					}
